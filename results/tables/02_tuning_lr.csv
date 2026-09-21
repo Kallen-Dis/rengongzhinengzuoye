@@ -1,0 +1,5 @@
+﻿val_accuracy,val_f1_macro,val_f1_weighted,val_precision_macro,val_recall_macro,fit_time_s,predict_time_s,model,model_label,params,feature,group,group_title,config_desc
+0.8799,0.8807,0.8806,0.8826,0.8799,2.3183,0.2300,lr,逻辑回归 (LogisticRegression),"{""C"": 10.0}","tfidf[clean=light, max_features=5000]",lr,逻辑回归 C,C=10.0
+0.8725,0.8731,0.8730,0.8751,0.8724,2.0857,0.2148,lr,逻辑回归 (LogisticRegression),"{""C"": 100.0}","tfidf[clean=light, max_features=5000]",lr,逻辑回归 C,C=100.0
+0.8684,0.8688,0.8688,0.8706,0.8683,1.6743,0.2133,lr,逻辑回归 (LogisticRegression),"{""C"": 1.0}","tfidf[clean=light, max_features=5000]",lr,逻辑回归 C,C=1.0
+0.8039,0.8054,0.8055,0.8121,0.8038,1.2911,0.2162,lr,逻辑回归 (LogisticRegression),"{""C"": 0.1}","tfidf[clean=light, max_features=5000]",lr,逻辑回归 C,C=0.1

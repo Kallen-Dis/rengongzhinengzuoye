@@ -1,0 +1,5 @@
+﻿val_accuracy,val_f1_macro,val_f1_weighted,val_precision_macro,val_recall_macro,fit_time_s,predict_time_s,model,model_label,params,feature
+0.8704,0.8709,0.8709,0.8728,0.8704,3.2250,0.8662,nb,朴素贝叶斯 (MultinomialNB),{},"tfidf[clean=light, max_features=5000]"
+0.8677,0.8688,0.8688,0.8720,0.8677,67.5365,15.8540,svm,支持向量机 (SVC),{},"tfidf[clean=light, max_features=5000]"
+0.8684,0.8688,0.8688,0.8706,0.8683,8.1999,1.2243,lr,逻辑回归 (LogisticRegression),{},"tfidf[clean=light, max_features=5000]"
+0.8847,0.8854,0.8855,0.8871,0.8846,108.8437,0.3074,mlp,多层感知机 (MLPClassifier),{},"tfidf[clean=light, max_features=5000]"

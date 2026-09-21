@@ -1,0 +1,5 @@
+﻿val_accuracy,val_f1_macro,val_f1_weighted,val_precision_macro,val_recall_macro,fit_time_s,predict_time_s,model,model_label,params,feature,group,group_title,config_desc
+0.8874,0.8884,0.8883,0.8910,0.8873,95.6055,12.7584,svm,支持向量机 (SVC),"{""kernel"": ""rbf"", ""C"": 10.0, ""gamma"": ""scale""}","tfidf[clean=light, max_features=5000]",svm_rbf,SVM RBF 核,rbf C=10.0 gamma=scale
+0.8826,0.8839,0.8839,0.8877,0.8826,53.0381,7.0073,svm,支持向量机 (SVC),"{""kernel"": ""rbf"", ""C"": 1.0, ""gamma"": ""scale""}","tfidf[clean=light, max_features=5000]",svm_rbf,SVM RBF 核,rbf C=1.0 gamma=scale
+0.8270,0.8301,0.8301,0.8392,0.8269,67.0518,3.3938,svm,支持向量机 (SVC),"{""kernel"": ""rbf"", ""C"": 10.0, ""gamma"": 0.01}","tfidf[clean=light, max_features=5000]",svm_rbf,SVM RBF 核,rbf C=10.0 gamma=0.01
+0.1940,0.1661,0.1668,0.5949,0.1920,61.0868,12.9687,svm,支持向量机 (SVC),"{""kernel"": ""rbf"", ""C"": 1.0, ""gamma"": 0.01}","tfidf[clean=light, max_features=5000]",svm_rbf,SVM RBF 核,rbf C=1.0 gamma=0.01

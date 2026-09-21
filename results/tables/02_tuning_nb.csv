@@ -1,0 +1,5 @@
+﻿val_accuracy,val_f1_macro,val_f1_weighted,val_precision_macro,val_recall_macro,fit_time_s,predict_time_s,model,model_label,params,feature,group,group_title,config_desc
+0.8765,0.8773,0.8773,0.8793,0.8765,0.6506,0.1391,nb,朴素贝叶斯 (MultinomialNB),"{""alpha"": 0.1}","tfidf[clean=light, max_features=5000]",nb,朴素贝叶斯 alpha,alpha=0.1
+0.8731,0.8739,0.8738,0.8760,0.8731,0.6555,0.1339,nb,朴素贝叶斯 (MultinomialNB),"{""alpha"": 0.01}","tfidf[clean=light, max_features=5000]",nb,朴素贝叶斯 alpha,alpha=0.01
+0.8725,0.8731,0.8731,0.8755,0.8725,0.6816,0.1387,nb,朴素贝叶斯 (MultinomialNB),"{""alpha"": 0.5}","tfidf[clean=light, max_features=5000]",nb,朴素贝叶斯 alpha,alpha=0.5
+0.8704,0.8709,0.8709,0.8728,0.8704,0.6970,0.1393,nb,朴素贝叶斯 (MultinomialNB),"{""alpha"": 1.0}","tfidf[clean=light, max_features=5000]",nb,朴素贝叶斯 alpha,alpha=1.0

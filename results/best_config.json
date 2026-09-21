@@ -1,0 +1,35 @@
+{
+  "feature_key": "F1",
+  "feature_spec": {
+    "preprocess": "none",
+    "vectorizer": "tfidf",
+    "params": {
+      "max_features": 5000
+    }
+  },
+  "model": "lr",
+  "params": {
+    "C": 10.0
+  },
+  "cv_accuracy_mean": 0.9097450168155703,
+  "cv_accuracy_std": 0.01195508302992042,
+  "cv_f1_macro_mean": 0.9102944832791721,
+  "cv_f1_macro_std": 0.011833484315778894,
+  "holdout_val_accuracy": 0.9131614654002713,
+  "holdout_val_f1_macro": 0.9135327239122535,
+  "train_accuracy": 0.9990499457111836,
+  "prediction_distribution": {
+    "0": 259,
+    "1": 249,
+    "2": 224,
+    "3": 245,
+    "4": 247,
+    "5": 254,
+    "6": 243,
+    "7": 262,
+    "8": 244,
+    "9": 230
+  },
+  "n_train": 7368,
+  "n_test": 2457
+}

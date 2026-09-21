@@ -1,0 +1,6 @@
+﻿val_accuracy,val_f1_macro,val_f1_weighted,val_precision_macro,val_recall_macro,fit_time_s,predict_time_s,model,model_label,params,feature,group,group_title,config_desc
+0.8847,0.8854,0.8855,0.8871,0.8846,70.4443,0.2811,mlp,多层感知机 (MLPClassifier),"{""hidden_layer_sizes"": [100], ""alpha"": 0.0001}","tfidf[clean=light, max_features=5000]",mlp,MLP 结构/正则化,"hidden=(100,), alpha=1e-4"
+0.8826,0.8837,0.8837,0.8857,0.8826,231.3194,0.3166,mlp,多层感知机 (MLPClassifier),"{""hidden_layer_sizes"": [200], ""alpha"": 0.0001}","tfidf[clean=light, max_features=5000]",mlp,MLP 结构/正则化,"hidden=(200,), alpha=1e-4"
+0.8826,0.8835,0.8834,0.8854,0.8825,249.1172,0.3069,mlp,多层感知机 (MLPClassifier),"{""hidden_layer_sizes"": [400], ""alpha"": 0.0001}","tfidf[clean=light, max_features=5000]",mlp,MLP 结构/正则化,"hidden=(400,), alpha=1e-4"
+0.8799,0.8808,0.8808,0.8827,0.8798,56.5003,0.2922,mlp,多层感知机 (MLPClassifier),"{""hidden_layer_sizes"": [100, 50], ""alpha"": 0.0001}","tfidf[clean=light, max_features=5000]",mlp,MLP 结构/正则化,"hidden=(100,50), alpha=1e-4"
+0.8704,0.8713,0.8712,0.8733,0.8703,213.8359,0.2854,mlp,多层感知机 (MLPClassifier),"{""hidden_layer_sizes"": [200], ""alpha"": 0.01}","tfidf[clean=light, max_features=5000]",mlp,MLP 结构/正则化,"hidden=(200,), alpha=1e-2"

@@ -1,0 +1,5 @@
+﻿val_accuracy,val_f1_macro,val_f1_weighted,val_precision_macro,val_recall_macro,fit_time_s,predict_time_s,model,model_label,params,feature,group,group_title,config_desc
+0.8684,0.8694,0.8694,0.8731,0.8683,20.2588,4.4918,svm,支持向量机 (SVC),"{""kernel"": ""linear"", ""C"": 10.0}","tfidf[clean=light, max_features=5000]",svm,SVM 线性核 C,C=10.0
+0.8677,0.8688,0.8688,0.8720,0.8677,20.3815,4.4361,svm,支持向量机 (SVC),"{""kernel"": ""linear"", ""C"": 1.0}","tfidf[clean=light, max_features=5000]",svm,SVM 线性核 C,C=1.0
+0.8521,0.8543,0.8542,0.8620,0.8520,18.7345,4.6035,svm,支持向量机 (SVC),"{""kernel"": ""linear"", ""C"": 100.0}","tfidf[clean=light, max_features=5000]",svm,SVM 线性核 C,C=100.0
+0.7782,0.7870,0.7871,0.8131,0.7780,30.7887,6.2339,svm,支持向量机 (SVC),"{""kernel"": ""linear"", ""C"": 0.1}","tfidf[clean=light, max_features=5000]",svm,SVM 线性核 C,C=0.1
