@@ -12,6 +12,9 @@ results/*.log
 .DS_Store
 Thumbs.db
 
+# 报告预览图（仅本地检查用）
+report/page*.png
+
 # 编辑器
 .vscode/
 .idea/

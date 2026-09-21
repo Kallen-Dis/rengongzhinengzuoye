@@ -21,7 +21,7 @@ project1-text-classification/
 │   ├── tables/            # 所有实验的原始结果表（CSV）
 │   ├── figures/           # 报告用图（PNG）
 │   └── best_config.json   # 最终方案配置与评估摘要
-├── report/                # 实验报告（HTML + PDF）
+├── report/                # 实验报告（2 页版 HTML 源 + PDF）
 └── predictions.csv        # 最终提交的测试集预测（2457 行，无表头）
 ```
 
@@ -63,4 +63,4 @@ python make_figures.py --figure all                    # 5. 生成全部图表
 ## 提交文件
 
 - `predictions.csv`：2457 行、无表头、每行一个 0-9 整数，与课程样例格式一致
-- 实验报告：`report/`（PDF 开头附本仓库链接）
+- 实验报告：`report/实验一报告.pdf`（共 2 页，源文件 `report/report_2pages.html`，开头附本仓库链接）

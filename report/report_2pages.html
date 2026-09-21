@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>当代人工智能实验一报告（2页版）</title>
+<style>
+  @page { size: A4; margin: 8.5mm 10mm; }
+  body { font-family: "Microsoft YaHei", "SimHei", sans-serif; font-size: 8.35pt; line-height: 1.3; color: #111; margin: 0; }
+  h1 { font-size: 13pt; text-align: center; margin: 0 0 2pt 0; }
+  .meta { text-align: center; font-size: 8pt; color: #333; margin-bottom: 4pt; }
+  .meta a { color: #1a4d8f; text-decoration: none; }
+  h2 { font-size: 10pt; border-bottom: 1px solid #2b579a; color: #2b579a; margin: 4pt 0 2pt 0; padding-bottom: 1pt; }
+  h3 { font-size: 8.8pt; margin: 2.5pt 0 1pt 0; }
+  p { margin: 1.5pt 0; text-align: justify; }
+  table { border-collapse: collapse; width: 100%; font-size: 7.4pt; margin: 1.5pt 0; }
+  th, td { border: 0.5px solid #999; padding: 1pt 3pt; text-align: center; }
+  th { background: #eef2f8; }
+  td.l { text-align: left; }
+  .fig { text-align: center; margin: 2pt 0; page-break-inside: avoid; }
+  .fig .cap { font-size: 7.4pt; color: #444; margin-top: 0.5pt; }
+  .figrow { width: 100%; border-collapse: collapse; page-break-inside: avoid; }
+  .figrow td { border: none; padding: 0 3pt; vertical-align: top; text-align: center; }
+  .kv { page-break-inside: avoid; }
+  .small { font-size: 7.2pt; color: #333; }
+  ol { margin: 1.5pt 0 1.5pt 13pt; padding: 0; }
+  li { margin: 0.5pt 0; }
+  code { font-family: Consolas, monospace; font-size: 7.6pt; background: #f2f2f2; padding: 0 1pt; }
+</style>
+</head>
+<body>
+
+<h1>当代人工智能实验一 · 文本分类实验报告</h1>
+<div class="meta">张贤柯（10245501431）· 2026-09-21 · 代码仓库：<a href="https://github.com/REPLACE_USERNAME/ai-lab1-text-classification">github.com/REPLACE_USERNAME/ai-lab1-text-classification</a></div>
+
+<h2>一、问题与假设</h2>
+<p>将新闻文本 <i>x</i> 归入 10 个预定义类别之一 <i>y</i>∈{0,…,9}，属监督学习。实验前明确两条假设：<b>H1</b>（方法前提）话题相近的文章用词相近，词频统计足以支撑分类；<b>H2</b>（待检验）邮件头（From/Subject 等）是与话题无关的噪声，去除后模型更好。评价指标在实验前确定为验证集<b>准确率</b>（主）与<b>宏平均 F1</b>（辅）。</p>
+
+<h2>二、数据与划分</h2>
+<p>训练集 7368 条（含标签），无标签测试集 2457 条全程封存、仅最终预测一次。10 类基本均衡（9.57%~10.14%），无缺失、无重复，文本长度呈长尾（中位数 1139、最长 160616 字符）。验证集按类别<b>分层 8:2</b> 划出（1474 条），固定随机种子 42。泄露排查：仅 12 条样本的<b>引文</b>中出现 <code>Newsgroups:</code> 字段（非样本自身头部），不存在直接标签泄露，H2 的检验是公平的。</p>
+
+<h2>三、特征工程</h2>
+<p>TF-IDF(<i>t</i>,<i>d</i>) = TF(<i>t</i>,<i>d</i>) × IDF(<i>t</i>)，IDF 压制"the、and"等无区分度词。预处理设三档强度（none 原样 / light 去头 / heavy 再删引文与标点），向量化变体含词袋、停用词、二元词组、sublinear 对数词频、词+字符级 n-gram 拼接，共 10 种配置 F1–F10 做消融。词表与 IDF 统计量<b>只在训练折拟合</b>，杜绝泄露。</p>
+
+<h2>四、模型与实验设置</h2>
+<table class="kv">
+<tr><th>模型</th><th class="l">核心思想</th><th>搜索范围</th><th>最优</th><th>验证准确率</th></tr>
+<tr><td>朴素贝叶斯</td><td class="l">贝叶斯定理 + 特征独立假设</td><td>α∈{0.01,0.1,0.5,1}</td><td>α=0.1</td><td>0.8765</td></tr>
+<tr><td>SVM</td><td class="l">最大化间隔；C 控制对错分的容忍度</td><td>线性 C∈{0.1,1,10,100}；RBF C×γ</td><td>RBF C=10, γ=scale</td><td>0.8874</td></tr>
+<tr><td>逻辑回归</td><td class="l">线性模型输出类别概率，C 为正则化强度倒数</td><td>C∈{0.1,1,10,100}</td><td>C=10</td><td>0.8799</td></tr>
+<tr><td>MLP</td><td class="l">隐层 + ReLU 全连接网络，α 为 L2 系数</td><td>(100)/(200)/(100,50)/(400)，α∈{1e-4,1e-2}</td><td>(100,), α=1e-4</td><td>0.8847</td></tr>
+</table>
+<p class="small">表 1 模型与搜索范围（基线特征：去邮件头 + TF-IDF 5000；统一划分/种子/指标，一次只改一个变量）</p>
+
+<h2>五、结果与分析</h2>
+<h3>5.1 基线</h3>
+<p>四模型基线 0.868~0.885（图 2），远高于随机水平 10%，验证 H1；MLP 略高但训练耗时是朴素贝叶斯的 70 倍。</p>
+<div class="fig"><img src="../results/figures/fig2_baseline.png" style="width:45%"><div class="cap">图 2 基线表现与训练代价</div></div>
+<h3>5.2 超参数调优</h3>
+<p>图 3：α 从 1.0 降到 0.1 提升 0.6 个百分点（弱平滑释放长尾词权重）；LR 对 C 最敏感（C=10 比 C=0.1 高 7.6 个百分点）；SVM 线性与 RBF 打平（0.8874），说明 TF-IDF 空间近似线性可分；MLP 加宽/加深/增大 α 均无提升——容量不是瓶颈。</p>
+<div class="fig"><img src="../results/figures/fig3_tuning_curves.png" style="width:64%"><div class="cap">图 3 超参数调优曲线（验证集）</div></div>
+<h3>5.3 特征工程消融</h3>
+<p>以 LR(C=10) 为固定分类器（图 4，SVM 下结论一致）。<b>① H2 被推翻</b>：保留原始文本的 F1（0.9132）比去头的 F2（0.8799）高 3.3 个百分点，邮件头携带真实话题线索；<b>② 词表是最大杠杆</b>：5k→3.3 万全词表（F8，0.9077）提升约 4 个百分点，超过换模型与调参的收益；<b>③ 过度清洗有害</b>：F3（0.7978）因 IDF 已压制高频词、删标点/数字误伤判别词；字符级拼接（F9，0.9125）较 F8 高 0.5 个百分点但训练贵约 10 倍。</p>
+<div class="fig"><img src="../results/figures/fig4_feature_ablation_lr.png" style="width:52%"><div class="cap">图 4 特征工程消融（分类器固定：LR C=10）</div></div>
+<h3>5.4 集成探索</h3>
+<p>NB+LR+SVM 软投票（0.9145）仅比单 LR（0.9132）高 0.13 个百分点、训练贵约 60 倍，按“性能与复杂度综合考虑”不予采用。</p>
+<h3>5.5 错误分析</h3>
+<p>混淆矩阵（图 5）显示类 1↔类 2 互相混淆（类 2 F1=0.8136 最低，类 9 F1=0.9929 最高）：两类高频词均为硬件术语（scsi/drive/card 与 ax/max/windows），属任务固有的类间歧义而非模型缺陷。</p>
+<div class="fig"><img src="../results/figures/fig5_confusion_matrix.png" style="width:44%"><div class="cap">图 5 验证集混淆矩阵（行归一化）</div></div>
+
+<h2>六、最终方案与评估</h2>
+<p>综合性能与复杂度，最终方案：<b>原始文本 + TF-IDF(5000) + 逻辑回归(C=10)</b>，单模型、训练约 3 秒。5 折分层交叉验证（表 2）：准确率 <b>0.9097 ± 0.0120</b>、宏平均 F1 <b>0.9103 ± 0.0118</b>；留出验证集 0.9132。用全部 7368 条训练数据重训后，对 2457 条测试集做一次性预测，保存 <code>predictions.csv</code>（各类别预测 224~262 条，与训练分布一致）。训练集拟合准确率 0.999 与交叉验证 0.910 相差约 9 个百分点——高维稀疏下对训练集过拟合是常态，必须靠验证集/交叉验证选型，不能看训练分数。</p>
+<table class="kv">
+<tr><th>折次</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>均值 ± 标准差</th></tr>
+<tr><td>准确率</td><td>0.9159</td><td>0.9193</td><td>0.8928</td><td>0.9192</td><td>0.9016</td><td><b>0.9097 ± 0.0120</b></td></tr>
+<tr><td>宏平均 F1</td><td>0.9167</td><td>0.9197</td><td>0.8934</td><td>0.9194</td><td>0.9023</td><td><b>0.9103 ± 0.0118</b></td></tr>
+</table>
+<p class="small">表 2 最终方案 5 折分层交叉验证（全训练集，seed=42）</p>
+
+<h2>七、复现说明</h2>
+<p>Python 3.13.2 / numpy 2.5.2 / pandas 3.0.5 / scikit-learn 1.9.0；全局种子 42；分层 8:2；测试集封存。仓库依次运行 <code>run_experiments.py --stage eda/baseline/tuning/features/final</code> 即可从原始数据复现全部结果表（<code>results/tables/</code>）与图表（<code>results/figures/</code>），由 <code>--stage final --feature F1 --model lr --C 10.0</code> 生成 <code>predictions.csv</code>（2457 行、无表头、每行 0-9，与样例格式一致）。</p>
+
+<h2>八、思考与扩展</h2>
+<ol>
+<li><b>为何 SVM/LR 表现好？</b> TF-IDF 映射到高维稀疏空间，类别近似线性可分；线性模型参数少、正则化下不易过拟合，IDF 已隐式完成特征选择。NB 受独立假设限制，MLP 容量过剩易过拟合。</li>
+<li><b>MLP 能否加深加宽提升？</b> 证据不支持：加宽/加深验证集均无提升，训练拟合已达 0.999，瓶颈在泛化不在容量。</li>
+<li><b>其他表示？</b> 词袋（F4 更差）、Word2Vec/GloVe、BERT 微调（0.96+，超课程范围）；本实验用字符级 n-gram 拼接做了轻量探索（+0.5 个百分点）。</li>
+</ol>
+
+<h2>九、结论与局限</h2>
+<p><b>结论</b>：TF-IDF + 线性模型即可达约 0.91 验证准确率（H1 成立）；邮件头是信息而非噪声（H2 被推翻）；词表规模比模型与调参更重要；全过程可复现。<b>局限</b>：单一划分（已用 5 折 CV 缓解）；未引入外部词向量/预训练模型；超参网格较粗；测试集真实性能无法观测。</p>
+
+</body>
+</html>
