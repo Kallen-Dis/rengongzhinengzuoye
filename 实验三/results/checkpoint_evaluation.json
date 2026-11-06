@@ -1,0 +1,14 @@
+[
+  {
+    "model": "baseline",
+    "accuracy": 0.8486,
+    "reported_accuracy": 0.8486,
+    "absolute_difference": 0.0
+  },
+  {
+    "model": "improved",
+    "accuracy": 0.8777,
+    "reported_accuracy": 0.8777,
+    "absolute_difference": 0.0
+  }
+]

@@ -1,0 +1,11 @@
+﻿class,baseline,improved
+airplane,0.878,0.901
+automobile,0.935,0.951
+bird,0.769,0.832
+cat,0.697,0.756
+deer,0.838,0.853
+dog,0.778,0.807
+frog,0.873,0.912
+horse,0.872,0.911
+ship,0.922,0.92
+truck,0.924,0.934

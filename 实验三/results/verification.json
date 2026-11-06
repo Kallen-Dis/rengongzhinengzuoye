@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "split_disjoint_and_complete",
+    "prediction_shape",
+    "probability_sum",
+    "independent_confusion_matrix",
+    "independent_accuracy",
+    "checkpoint_epoch_selection",
+    "finite_losses",
+    "model_selection_by_validation"
+  ]
+}
