@@ -31,6 +31,9 @@ def main():
     def page():story.append(PageBreak())
     best=next(x for x in s['models'] if x['name']==s['selected_by_validation'])
     h('实验三 图像分类模型设计与实现')
+    repo_url='https://github.com/Kallen-Dis/rengongzhinengzuoye/tree/experiment3'
+    story.append(Paragraph('GitHub仓库（实验三分支）：<br/><link href="'+repo_url+'" color="#1756A9">'+repo_url+'</link>',style))
+    md.extend(['GitHub仓库（实验三分支）：['+repo_url+']('+repo_url+')',''])
     p(f"使用 CIFAR-10 完成从零训练、验证选择、测试评估与误差分析。按验证集选中的模型是 {best['name']}，测试总体准确率 {best['test_accuracy']*100:.2f}%。全部数字与图片来自本次实际运行。")
     h('一 数据划分与实验设置')
     p('官方训练集50000张按类别分层划分：每类4500张训练、500张验证，共45000/5000张；官方10000张测试集仅在训练与模型选择结束后评估。固定种子2026，划分索引随结果保存。图像32×32、RGB；像素除255后用均值和标准差0.5映射到[-1,1]，未用验证或测试数据估计归一化统计量。')

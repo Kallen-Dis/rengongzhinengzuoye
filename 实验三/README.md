@@ -15,6 +15,8 @@
 
 ## 运行
 
+课程提交要求：在课程群提供的第三次作业链接上传 `report/实验三报告.pdf`，报告不超过5页，开头已附实验三GitHub分支链接；代码及README保存在GitHub。ZIP仅用于完整材料备份，不作为本次课程平台的上传格式。
+
 推荐Python 3.13及NVIDIA GPU。安装GPU版本时遵循PyTorch官方安装说明：
 
 ```powershell
